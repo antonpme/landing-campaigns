@@ -356,13 +356,17 @@
       <p class="section-subtitle">From same-day local delivery to cross-border shipping — choose the service that matches your business needs.</p>
     </div>
 
+    <div class="flex-center mb-xl">
+      <div class="tabs-container">
+        <button class="tab-btn active" data-services-tab="domestic">Domestic Logistics</button>
+        <button class="tab-btn" data-services-tab="international">International Shipping</button>
+      </div>
+    </div>
+
     <div class="container">
-      <!-- Domestic Logistics -->
-      <div class="services-group">
-        <div class="services-group-header">
-          <span class="services-group-label">Domestic Logistics</span>
-          <span class="services-group-desc">Fast delivery within UAE, KSA, and Kuwait</span>
-        </div>
+      <!-- Domestic Logistics Panel -->
+      <div class="services-panel active" data-services-panel="domestic">
+        <p class="services-panel-desc">Fast delivery within UAE, KSA, and Kuwait. Manage everything via portal or API integration.</p>
         <div class="services-grid services-grid-3">
           <div class="service-card">
             <div class="service-icon">
@@ -403,12 +407,9 @@
         </div>
       </div>
 
-      <!-- International Shipping -->
-      <div class="services-group">
-        <div class="services-group-header">
-          <span class="services-group-label">International Shipping</span>
-          <span class="services-group-desc">Cross-border delivery across the GCC</span>
-        </div>
+      <!-- International Shipping Panel -->
+      <div class="services-panel" data-services-panel="international">
+        <p class="services-panel-desc">Cross-border delivery across the GCC with customs clearance, real-time tracking, and electronic invoicing.</p>
         <div class="services-grid services-grid-2">
           <div class="service-card">
             <div class="service-icon">

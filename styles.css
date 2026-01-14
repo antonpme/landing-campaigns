@@ -1054,37 +1054,20 @@ button:focus-visible, .btn:focus-visible {
 }
 
 /* --- Services & Verticals --- */
-.services-group {
-  margin-bottom: var(--space-2xl);
+.services-panel {
+  display: none;
+  animation: fadeIn 0.4s ease forwards;
 }
 
-.services-group:last-child {
-  margin-bottom: 0;
+.services-panel.active {
+  display: block;
 }
 
-.services-group-header {
-  display: flex;
-  align-items: center;
-  gap: var(--space-md);
-  margin-bottom: var(--space-lg);
-  padding-bottom: var(--space-sm);
-  border-bottom: 1px solid var(--border-base);
-}
-
-.services-group-label {
-  font-size: var(--font-size-sm);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--brand-primary);
-  background: var(--brand-primary-light);
-  padding: 6px 14px;
-  border-radius: var(--radius-pill);
-}
-
-.services-group-desc {
-  font-size: var(--font-size-sm);
+.services-panel-desc {
+  text-align: center;
   color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto var(--space-xl);
 }
 
 .services-grid {
@@ -1489,12 +1472,6 @@ button:focus-visible, .btn:focus-visible {
   .services-grid-3,
   .services-grid-2 {
     grid-template-columns: 1fr;
-  }
-
-  .services-group-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: var(--space-xs);
   }
 
   .section {

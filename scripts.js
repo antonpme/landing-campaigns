@@ -85,18 +85,34 @@ mobileNavLinks.forEach(link => {
 });
 
 // Tab Button Functionality (Platform section)
-document.querySelectorAll('.tab-btn').forEach(btn => {
+document.querySelectorAll('[data-tab]').forEach(btn => {
   btn.addEventListener('click', () => {
-    // Remove active from all tabs
-    document.querySelectorAll('.tab-btn').forEach(t => t.classList.remove('active'));
+    // Remove active from all platform tabs
+    document.querySelectorAll('[data-tab]').forEach(t => t.classList.remove('active'));
     // Add active to clicked tab
     btn.classList.add('active');
 
-    // Hide all panels
+    // Hide all platform panels
     document.querySelectorAll('.platform-panel').forEach(p => p.classList.remove('active'));
     // Show matching panel
     const panelId = btn.dataset.tab;
     document.querySelector(`[data-panel="${panelId}"]`).classList.add('active');
+  });
+});
+
+// Tab Button Functionality (Services section)
+document.querySelectorAll('[data-services-tab]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    // Remove active from all services tabs
+    document.querySelectorAll('[data-services-tab]').forEach(t => t.classList.remove('active'));
+    // Add active to clicked tab
+    btn.classList.add('active');
+
+    // Hide all services panels
+    document.querySelectorAll('.services-panel').forEach(p => p.classList.remove('active'));
+    // Show matching panel
+    const panelId = btn.dataset.servicesTab;
+    document.querySelector(`[data-services-panel="${panelId}"]`).classList.add('active');
   });
 });
 

@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page Redesign - Business Case | Shipa Delivery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #E85A24;
+      --primary-light: #FF6B35;
+      --dark: #1a1a2e;
+      --dark-soft: #2d2d44;
+      --text: #4a4a68;
+      --text-light: #6b6b8a;
+      --bg: #fafafa;
+      --white: #ffffff;
+      --success: #10b981;
+      --warning: #f59e0b;
+      --danger: #ef4444;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.12);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    .header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 80px 0 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, var(--primary) 0%, transparent 50%);
+      opacity: 0.1;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 24px;
+      backdrop-filter: blur(10px);
+    }
+
+    .header h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    .header h1 span {
+      color: var(--primary);
+    }
+
+    .header p {
+      font-size: 18px;
+      opacity: 0.8;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-buttons {
+      margin-top: 32px;
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 16px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: var(--primary-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(232, 90, 36, 0.3);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 18px;
+      margin-bottom: 48px;
+    }
+
+    /* Problem Section */
+    .problems {
+      background: var(--white);
+    }
+
+    .problem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .problem-card {
+      background: #fff5f5;
+      border: 1px solid #fecaca;
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+    }
+
+    .problem-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--danger);
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    .problem-icon {
+      width: 48px;
+      height: 48px;
+      background: #fecaca;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--danger);
+    }
+
+    .problem-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .problem-card p {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    /* Solutions Section */
+    .solutions {
+      background: var(--bg);
+    }
+
+    .solution-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .solution-card {
+      background: var(--white);
+      border: 1px solid #d1fae5;
+      border-radius: var(--radius);
+      padding: 28px;
+      position: relative;
+      box-shadow: var(--shadow);
+    }
+
+    .solution-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--success);
+      border-radius: var(--radius) 0 0 var(--radius);
+    }
+
+    .solution-icon {
+      width: 48px;
+      height: 48px;
+      background: #d1fae5;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--success);
+    }
+
+    .solution-card h3 {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .solution-card p {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    /* Improvements Section */
+    .improvements {
+      background: var(--white);
+    }
+
+    .improvement-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .improvement-item {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      background: var(--bg);
+      padding: 24px;
+      border-radius: var(--radius);
+      border: 1px solid #e5e7eb;
+    }
+
+    .improvement-number {
+      width: 40px;
+      height: 40px;
+      background: var(--primary);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .improvement-content h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .improvement-content p {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .improvement-tag {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1d4ed8;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-top: 10px;
+    }
+
+    /* Benefits Section */
+    .benefits {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-soft) 100%);
+      color: var(--white);
+    }
+
+    .benefits .section-title {
+      color: var(--white);
+    }
+
+    .benefits .section-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 32px;
+    }
+
+    .benefit-item {
+      text-align: center;
+    }
+
+    .benefit-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      color: var(--primary);
+    }
+
+    .benefit-item h3 {
+      font-size: 17px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .benefit-item p {
+      font-size: 14px;
+      opacity: 0.7;
+    }
+
+    /* Architecture Section */
+    .architecture {
+      background: var(--bg);
+    }
+
+    .arch-comparison {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 768px) {
+      .arch-comparison {
+        grid-template-columns: 1fr;
+      }
+      .arch-arrow {
+        transform: rotate(90deg);
+      }
+    }
+
+    .arch-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px;
+      box-shadow: var(--shadow);
+    }
+
+    .arch-box.old {
+      border: 2px solid #fecaca;
+    }
+
+    .arch-box.new {
+      border: 2px solid #d1fae5;
+    }
+
+    .arch-box h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .arch-box.old h3 {
+      color: var(--danger);
+    }
+
+    .arch-box.new h3 {
+      color: var(--success);
+    }
+
+    .arch-list {
+      list-style: none;
+    }
+
+    .arch-list li {
+      padding: 10px 0;
+      border-bottom: 1px solid #e5e7eb;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 15px;
+    }
+
+    .arch-list li:last-child {
+      border-bottom: none;
+    }
+
+    .arch-arrow {
+      color: var(--primary);
+      font-size: 32px;
+    }
+
+    /* Next Steps */
+    .next-steps {
+      background: var(--white);
+    }
+
+    .steps-timeline {
+      position: relative;
+      padding-left: 40px;
+    }
+
+    .steps-timeline::before {
+      content: '';
+      position: absolute;
+      left: 15px;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: #e5e7eb;
+    }
+
+    .step-item {
+      position: relative;
+      padding-bottom: 32px;
+    }
+
+    .step-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .step-dot {
+      position: absolute;
+      left: -33px;
+      width: 16px;
+      height: 16px;
+      background: var(--primary);
+      border-radius: 50%;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 3px var(--primary);
+    }
+
+    .step-item h3 {
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .step-item p {
+      font-size: 15px;
+      color: var(--text);
+    }
+
+    .step-optional {
+      display: inline-block;
+      background: #fef3c7;
+      color: #92400e;
+      padding: 2px 10px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer p {
+      opacity: 0.6;
+      font-size: 14px;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    /* SVG Icons */
+    .icon {
+      width: 24px;
+      height: 24px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container header-content">
+      <div class="header-badge">Business Case Presentation</div>
+      <h1>Shipa Delivery <span>Landing Page Redesign</span></h1>
+      <p>A strategic initiative to modernize our web presence, resolve licensing issues, and enable marketing agility</p>
+      <div class="cta-buttons">
+        <a href="index.html" class="btn btn-primary">
+          <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+          View New Landing Page
+        </a>
+        <a href="https://shipadelivery.com" target="_blank" class="btn btn-secondary">
+          View Current (WordPress)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Problems Section -->
+  <section class="problems">
+    <div class="container">
+      <h2 class="section-title">Why This Redesign Was Necessary</h2>
+      <p class="section-subtitle">Critical issues that required immediate attention</p>
+
+      <div class="problem-grid">
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
+            </svg>
+          </div>
+          <h3>Font Licensing Violation</h3>
+          <p>Futura PT was hardcoded in hundreds of places. After canceling Adobe Creative Cloud, we received takedown requests from font owners.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"/>
+            </svg>
+          </div>
+          <h3>Unmaintainable WordPress</h3>
+          <p>Old WordPress installation with legacy code. The original developer left. Changes are slow, risky, and expensive.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3>Poor Performance</h3>
+          <p>WordPress site loads slowly, affecting user experience and search engine rankings. High bounce rates on mobile.</p>
+        </div>
+
+        <div class="problem-card">
+          <div class="problem-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+            </svg>
+          </div>
+          <h3>No Marketing Access</h3>
+          <p>Marketing agency cannot edit content directly. Every change requires developer involvement, slowing down campaigns.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Solutions Section -->
+  <section class="solutions">
+    <div class="container">
+      <h2 class="section-title">What We Built</h2>
+      <p class="section-subtitle">A modern, flexible solution that addresses all critical issues</p>
+
+      <div class="solution-grid">
+        <div class="solution-card">
+          <div class="solution-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3>Legal Font Usage</h3>
+          <p>Switched to Jost (Google Fonts) - free, open-source, visually similar. Zero licensing concerns, forever.</p>
+        </div>
+
+        <div class="solution-card">
+          <div class="solution-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/>
+            </svg>
+          </div>
+          <h3>Clean Codebase</h3>
+          <p>Single HTML + CSS + JS files. Easy to maintain, update, and deploy. Version controlled on GitHub.</p>
+        </div>
+
+        <div class="solution-card">
+          <div class="solution-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+            </svg>
+          </div>
+          <h3>Lightning Fast</h3>
+          <p>Static files load instantly. No database queries, no PHP processing. Better SEO and user experience.</p>
+        </div>
+
+        <div class="solution-card">
+          <div class="solution-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+            </svg>
+          </div>
+          <h3>Strapi-Ready</h3>
+          <p>Architecture prepared for headless CMS integration. Marketing team can manage content without developer help.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Improvements Section -->
+  <section class="improvements">
+    <div class="container">
+      <h2 class="section-title">Key Improvements</h2>
+      <p class="section-subtitle">What's better in the new landing page</p>
+
+      <div class="improvement-list">
+        <div class="improvement-item">
+          <div class="improvement-number">1</div>
+          <div class="improvement-content">
+            <h3>Modern Visual Design</h3>
+            <p>Clean, professional look aligned with current design trends. Glassmorphism effects, smooth animations, and consistent visual hierarchy that builds trust with visitors.</p>
+            <span class="improvement-tag">Brand Perception</span>
+          </div>
+        </div>
+
+        <div class="improvement-item">
+          <div class="improvement-number">2</div>
+          <div class="improvement-content">
+            <h3>Mobile-First Experience</h3>
+            <p>Fully responsive design optimized for all devices. Touch-friendly buttons, readable text, and proper spacing on mobile. Over 60% of traffic comes from mobile devices.</p>
+            <span class="improvement-tag">User Experience</span>
+          </div>
+        </div>
+
+        <div class="improvement-item">
+          <div class="improvement-number">3</div>
+          <div class="improvement-content">
+            <h3>Clear Service Presentation</h3>
+            <p>Reorganized services into Domestic Logistics and International Shipping tabs. Visitors can quickly find what they need without scrolling through everything.</p>
+            <span class="improvement-tag">Conversion Optimization</span>
+          </div>
+        </div>
+
+        <div class="improvement-item">
+          <div class="improvement-number">4</div>
+          <div class="improvement-content">
+            <h3>Prominent Call-to-Action</h3>
+            <p>Quote request form visible immediately on page load. Sticky header with "Get a Quote" button always accessible. Clear path to conversion.</p>
+            <span class="improvement-tag">Lead Generation</span>
+          </div>
+        </div>
+
+        <div class="improvement-item">
+          <div class="improvement-number">5</div>
+          <div class="improvement-content">
+            <h3>Trust Signals Throughout</h3>
+            <p>Client logos, coverage maps, and professional imagery reinforce credibility. Social proof elements strategically placed near conversion points.</p>
+            <span class="improvement-tag">Trust Building</span>
+          </div>
+        </div>
+
+        <div class="improvement-item">
+          <div class="improvement-number">6</div>
+          <div class="improvement-content">
+            <h3>Smooth Scroll Navigation</h3>
+            <p>Custom-engineered scroll behavior for buttery-smooth navigation between sections. Works consistently across all browsers and devices.</p>
+            <span class="improvement-tag">Polish & Quality</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture Comparison -->
+  <section class="architecture">
+    <div class="container">
+      <h2 class="section-title">Architecture Comparison</h2>
+      <p class="section-subtitle">From monolithic to modern</p>
+
+      <div class="arch-comparison">
+        <div class="arch-box old">
+          <h3>
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+            Before (WordPress)
+          </h3>
+          <ul class="arch-list">
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--danger);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              PHP + MySQL monolith
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--danger);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              Licensed fonts (Futura PT)
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--danger);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              Legacy plugins & themes
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--danger);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              No version control
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--danger);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+              </svg>
+              Developer-only changes
+            </li>
+          </ul>
+        </div>
+
+        <div class="arch-arrow">&#8594;</div>
+
+        <div class="arch-box new">
+          <h3>
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+            </svg>
+            After (Static + Strapi)
+          </h3>
+          <ul class="arch-list">
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--success);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Static HTML/CSS/JS
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--success);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Open-source fonts (Jost)
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--success);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Zero dependencies
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--success);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Git version control
+            </li>
+            <li>
+              <svg class="icon" fill="currentColor" viewBox="0 0 20 20" style="color: var(--success);">
+                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              </svg>
+              Strapi CMS (optional)
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business Benefits -->
+  <section class="benefits">
+    <div class="container">
+      <h2 class="section-title">Business Impact</h2>
+      <p class="section-subtitle">Tangible benefits for Shipa Delivery</p>
+
+      <div class="benefit-grid">
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+            </svg>
+          </div>
+          <h3>Legal Compliance</h3>
+          <p>Zero font licensing risk. No more takedown notices.</p>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+          </div>
+          <h3>Reduced Costs</h3>
+          <p>No WordPress hosting or maintenance fees. Free GitHub Pages hosting.</p>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
+            </svg>
+          </div>
+          <h3>Better Conversions</h3>
+          <p>Modern design + fast loading = more leads from the same traffic.</p>
+        </div>
+
+        <div class="benefit-item">
+          <div class="benefit-icon">
+            <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+            </svg>
+          </div>
+          <h3>Marketing Agility</h3>
+          <p>Agency can update content directly with Strapi integration.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Next Steps -->
+  <section class="next-steps">
+    <div class="container">
+      <h2 class="section-title">Next Steps</h2>
+      <p class="section-subtitle">Path to production</p>
+
+      <div class="steps-timeline">
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <h3>Review & Approval</h3>
+          <p>CMO reviews the new landing page and provides feedback. Design adjustments if needed.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <h3>Form Integration</h3>
+          <p>Connect the quote request form to existing CRM/email system for lead capture.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <h3>Domain & Deployment</h3>
+          <p>Deploy to production and configure shipadelivery.com domain to point to new site.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <h3>Strapi Setup <span class="step-optional">Optional</span></h3>
+          <p>If marketing needs content control, set up Strapi CMS and connect to landing page.</p>
+        </div>
+
+        <div class="step-item">
+          <div class="step-dot"></div>
+          <h3>WordPress Sunset</h3>
+          <p>Once new site is stable, decommission old WordPress installation.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>Prepared for Shipa Delivery CMO Review | January 2026</p>
+      <p style="margin-top: 8px;"><a href="index.html">View the new landing page &rarr;</a></p>
+    </div>
+  </footer>
+</body>
+
+</html>

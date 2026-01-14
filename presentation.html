@@ -4,20 +4,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Landing Page Redesign - Business Case | Shipa Delivery</title>
+  <title>Campaigns Landing Page Redesign - Business Case | Shipa Delivery</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --primary: #E85A24;
-      --primary-light: #FF6B35;
-      --dark: #1a1a2e;
-      --dark-soft: #2d2d44;
-      --text: #4a4a68;
-      --text-light: #6b6b8a;
-      --bg: #fafafa;
-      --white: #ffffff;
+      /* Shipa Brand Colors */
+      --primary: #0000FF;
+      --primary-hover: #0000C9;
+      --primary-light: #EDEDFF;
+      --dark: #242C35;
+      --dark-soft: #3a4550;
+      --text: #242C35;
+      --text-light: #6D6D79;
+      --bg: #F6F6F8;
+      --white: #FFFFFF;
       --success: #10b981;
       --warning: #f59e0b;
       --danger: #ef4444;
@@ -128,9 +130,9 @@
     }
 
     .btn-primary:hover {
-      background: var(--primary-light);
+      background: var(--primary-hover);
       transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(232, 90, 36, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 255, 0.3);
     }
 
     .btn-secondary {
@@ -168,8 +170,14 @@
 
     .problem-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .problem-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .problem-card {
@@ -222,8 +230,14 @@
 
     .solution-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
+    }
+
+    @media (max-width: 640px) {
+      .solution-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
     .solution-card {
@@ -318,8 +332,8 @@
 
     .improvement-tag {
       display: inline-block;
-      background: #dbeafe;
-      color: #1d4ed8;
+      background: var(--primary-light);
+      color: var(--primary);
       padding: 4px 12px;
       border-radius: 100px;
       font-size: 12px;
@@ -543,7 +557,7 @@
   <header class="header">
     <div class="container header-content">
       <div class="header-badge">Business Case Presentation</div>
-      <h1>Shipa Delivery <span>Landing Page Redesign</span></h1>
+      <h1>Shipa Delivery<br><span>Campaigns Landing Page Redesign</span></h1>
       <p>A strategic initiative to modernize our web presence, resolve licensing issues, and enable marketing agility</p>
       <div class="cta-buttons">
         <a href="index.html" class="btn btn-primary">
@@ -878,7 +892,7 @@
         <div class="step-item">
           <div class="step-dot"></div>
           <h3>Review & Approval</h3>
-          <p>CMO reviews the new landing page and provides feedback. Design adjustments if needed.</p>
+          <p>Review the new landing page and provide feedback. Design adjustments if needed.</p>
         </div>
 
         <div class="step-item">
@@ -911,7 +925,7 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>Prepared for Shipa Delivery CMO Review | January 2026</p>
+      <p>Shipa Delivery | January 2026</p>
       <p style="margin-top: 8px;"><a href="index.html">View the new landing page &rarr;</a></p>
     </div>
   </footer>
